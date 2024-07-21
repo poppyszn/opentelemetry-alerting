@@ -1,0 +1,19 @@
+groups:
+  - name: custom_rules
+    rules:
+      
+    
+  - name: alert_rules
+    rules:
+      # - alert: NodeInstanceDown
+      #   expr: up{instance="node-exporter:9100", job="node"} == 0
+      #   for: 1m
+      #   labels:
+      #     severity: critical
+      #   annotations:
+      #     summary: "Instance {{ $labels.instance }} down"
+      #     description: "{{ $labels.instance }} of job {{ $labels.job }}"
+
+      
+
+        
