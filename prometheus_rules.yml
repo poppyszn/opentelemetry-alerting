@@ -1,19 +1,11 @@
 groups:
-  - name: custom_rules
+  - name: otel-alerts
     rules:
-      
-    
-  - name: alert_rules
-    rules:
-      # - alert: NodeInstanceDown
-      #   expr: up{instance="node-exporter:9100", job="node"} == 0
-      #   for: 1m
-      #   labels:
-      #     severity: critical
-      #   annotations:
-      #     summary: "Instance {{ $labels.instance }} down"
-      #     description: "{{ $labels.instance }} of job {{ $labels.job }}"
-
-      
-
-        
+      - alert: OTelErrorTraceDetected
+        expr: increase(otelcol_exporter_sent_spans{exporter="jaeger"}[5m]) > 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Error traces detected in OpenTelemetry Collector"
+          description: "Prometheus has detected error traces in the OpenTelemetry Collector over the past 5 minutes."
